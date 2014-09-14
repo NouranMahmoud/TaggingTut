@@ -6,7 +6,7 @@
       <%= h(post.content) %>
     </div>
     <div class="tags">
-      <%=raw post.all_tags %>
+      <%=raw tag_links(post.all_tags)%>
     </div>
   </div>
 <% end %>

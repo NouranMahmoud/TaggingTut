@@ -1,0 +1,26 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.border{
+  border: solid 1px #cacaca;
+}
+.border-box{
+  border-radius: 10px;
+}
+.glassy-bg{
+  background-color: rgba(0, 0, 0, 0.1)
+}
+
+.mt{
+  margin-top: 10px;
+}
+.mb{
+  margin-bottom: 10px;
+}
+
+.pt{
+  padding-top: 10px;
+}
+.pb{
+  padding-bottom: 10px;
+}

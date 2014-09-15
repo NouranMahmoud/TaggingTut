@@ -43,9 +43,9 @@ $include-html-global-classes: $include-html-classes;
 // $font-weight-bold: bold !default;
 
 // We use these to control various global styles
-// $body-bg: #fff;
+ $body-bg: #f2f2f2;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: 'PT Sans', sans-serif;
 $font-weight-normal:normal;
 $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
@@ -59,8 +59,8 @@ $body-font-weight: $font-weight-normal;
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #008CBA;
-// $secondary-color: #e7e7e7;
+$primary-color: #79E0CA;
+// $secondary-color: #96f8e3;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
@@ -344,7 +344,7 @@ $primary-color: #008CBA;
 // BUTTONS
 //
 
-// $include-html-button-classes: $include-html-classes;
+$include-html-button-classes: $include-html-classes;
 
 // We use these to build padding for buttons.
 // $button-tny: rem-calc(10);
@@ -533,24 +533,24 @@ $primary-color: #008CBA;
 // We use these to style the labels in different ways
 // $form-label-pointer: pointer;
 // $form-label-font-size: rem-calc(14);
-// $form-label-font-weight: $font-weight-normal;
+$form-label-font-weight: 500;
 // $form-label-line-height: 1.5;
 // $form-label-font-color: scale-color(#000, $lightness: 30%);
 // $form-label-small-transform: capitalize;
 // $form-label-bottom-margin: 0;
 // $input-font-family: inherit;
-// $input-font-color: rgba(0,0,0,0.75);
+$input-font-color: #525252;
 // $input-font-size: rem-calc(14);
-// $input-bg-color: #fff;
-// $input-focus-bg-color: scale-color(#fff, $lightness: -2%);
-// $input-border-color: scale-color(#fff, $lightness: -20%);
-// $input-focus-border-color: scale-color(#fff, $lightness: -40%);
-// $input-border-style: solid;
-// $input-border-width: 1px;
-// $input-border-radius: $global-radius;
+$input-bg-color: #ebebeb;
+$input-focus-bg-color: #f2f2f2;
+$input-border-color: #fff;
+$input-focus-border-color: #fff;
+// $input-border-style: none;
+// $input-border-width: 0;
+// $input-border-radius: 0;
 // $input-disabled-bg: #ddd;
 // $input-disabled-cursor: $cursor-default-value;
-// $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+$input-box-shadow: none;
 
 // We use these to style the fieldset border and spacing.
 // $fieldset-border-style: solid;

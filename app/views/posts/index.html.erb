@@ -1,15 +1,16 @@
-<div class="row border border-box glassy-bg mt pt ">
-  <div class="large-8 columns">
-    <%= render partial: "posts/new" %>
+<div class="row mt pt">
+  <div class="large-5 columns">
+    <div class="top-pad glassy-bg">
+      <%= render partial: "posts/new" %>
+    </div>
+    <div class="tags-cloud glassy-bg">
+      <h4>Tags Cloud</h4>
+      <% tag_cloud Post.tag_counts, %w{css1 css2 css3 css4} do |tag, css_class| %>
+        <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+      <% end %>
+    </div>
   </div>
-  <div class="large-4 columns">
-    <% tag_cloud Post.tag_counts, %w{css1 css2 css3 css4} do |tag, css_class| %>
-      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-    <% end %>
-  </div>
-</div>
-<div class="row">
-  <div class= "large-12 columns" id="posts">
+  <div class= "large-7 columns" id="posts">
     <%= render partial: @posts.reverse %>
   </div>
 </div>

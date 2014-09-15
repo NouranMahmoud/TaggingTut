@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 
     <title><%= content_for?(:title) ? yield(:title) : "Tagging System" %></title>
 
@@ -12,8 +13,16 @@
   </head>
 
   <body>
-
+    <nav class="nav-bar" data-topbar role="navigation">
+      <h2>Tagging in Rails</h2>
+    </nav>
+    <nav class="header text-center">
+      <h3>A SitePoint tutorial on tagging systems in Rails</h3>
+    </nav>
     <%= yield %>
+    <footer>
+      All rights are reserved
+    </footer>
     <%= javascript_include_tag "application" %>
   </body>
 </html>

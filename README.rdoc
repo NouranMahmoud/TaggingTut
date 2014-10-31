@@ -1,0 +1,3 @@
+== README
+
+This is a tutorial for building tagging system on Rails, find it on (sitepoint)[www.sitepoint.com/tagging-scratch-rails/] 

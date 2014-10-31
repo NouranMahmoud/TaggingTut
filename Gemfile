@@ -21,9 +21,11 @@ end
 # Production gems
 group :production do
   gem 'pg', '~> 0.17.1' # Postgres Database
-  gem 'unicorn', '~> 4.8.3' # WebServer
+  gem 'unicorn' # make sure you follow installation instructions for this gem
+  gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
+  gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 end
-
+gem 'rails_12factor', group: :production
 # RSpec
 group :test, :development do
   gem 'rspec-rails', '~> 3.0.2'

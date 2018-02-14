@@ -9,7 +9,8 @@ gem 'jquery-rails', '~> 3.1.1'
 gem 'jbuilder', '~> 2.1.3'
 gem 'bcrypt', '~> 3.1.7'
 gem 'foundation-rails', '~> 5.3.3.0'
-
+gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
+gem 'byebug'
 # Development gems
 group :development, :test do
   gem 'sqlite3', '~> 1.3.9'   # dev & test database
@@ -28,5 +29,5 @@ end
 gem 'rails_12factor', group: :production
 # RSpec
 group :test, :development do
-  gem 'rspec-rails', '~> 3.0.2'
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
 end

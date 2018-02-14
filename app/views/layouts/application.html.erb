@@ -13,15 +13,17 @@
   </head>
 
   <body>
-    <nav class="nav-bar" data-topbar role="navigation">
-      <h2>Airbnb</h2>
-      <% if signed_in? %>
+    <% if signed_in? %>
       Signed in as: <%= current_user.email %>
       <%= button_to 'Sign out', sign_out_path, method: :delete %>
     <% else %>
       <%= link_to 'Sign in', sign_in_path %>
+      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
     <% end %>
 
+    <nav class="nav-bar" data-topbar role="navigation">
+      <h2>Airbnb</h2>
+    
     <div id="flash">
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div>

@@ -1,24 +1,24 @@
-class PostsController < ApplicationController
+class ListingsController < ApplicationController
   def index
     if params[:tag]
-      @posts = [] 
+      @listings = [] 
       params[:tag].split(", ").map do |x|
         if Tag.all.find_by(name: x)
-          @posts = Post.tagged_with(x)
+          @listings = Listing.tagged_with(x)
         else
-          @posts += []
+          @listings += []
         end
       end
     else
-      @posts = Post.all
+      @listings = Listing.all
     end
   end
   
 
   def create
-    @post = Post.new(post_params)
+    @listing = Listing.new(listing_params)
     respond_to do |format|
-      if @post.save
+      if @listing.save
         format.js # Will search for create.js.erb
       else
         format.html { render root_path }
@@ -28,8 +28,8 @@ class PostsController < ApplicationController
 
   private
     # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:author, :content, :all_tags, :tag)
+    def listing_params
+      params.require(:listing).permit(:author, :content, :all_tags, :tag)
     end
 end
 
@@ -37,13 +37,13 @@ end
 # else
 #             j = 0 
 #             a = ""
-#             @jail = @posts
+#             @jail = @listings
 #             while j < @jail.collect(&:tags).flatten.uniq.length  
 #               a += @jail.collect(&:tags).flatten.uniq[j][:name] 
 #               j+= 1 
 #             end
 #             if !a.include?(x.to_s)
-#               @posts = Post.tagged_with(x)
-#               @posts = @posts.uniq
+#               @listings = Listing.tagged_with(x)
+#               @listings = @listings.uniq
 #             end
 #           end

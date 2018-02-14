@@ -6,7 +6,7 @@
   <%= submit_tag 'Search', name: nil %>
 <% end %>
     <div class="top-pad glassy-bg">
-      <%= render partial: "posts/new" %>
+      <%= render partial: "listings/new" %>
     </div>
     <div class="tags-cloud glassy-bg">
     <div class="inl">
@@ -17,12 +17,12 @@
       </div>
     </div>
   </div>
-  <p> Posts</p>
+  <p> Listings</p>
   <div class= "large-7 columns" id="posts">
 
-    <%= render partial: @posts.reverse %>
+    <%= render partial: @listings.reverse %>
 
-    
+
     <%# i = 0 %>
     <%# while i < @posts.collect(&:tags).flatten.uniq.length %> 
     <%#= @posts.collect(&:tags).flatten.uniq[i][:name] %>

@@ -1,4 +1,4 @@
-class Post < ActiveRecord::Base
+class Listing < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through: :taggings
 
@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.tagged_with(name)
-    Tag.find_by_name!(name).posts
+    Tag.find_by_name!(name).listings
   end
 
   def self.tagged

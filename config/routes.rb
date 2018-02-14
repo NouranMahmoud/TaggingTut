@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   
-  root 'posts#index'
-  resources :posts, only: [:create]
-  post 'tags', to: 'posts#index', as: "tag"
-  get 'tags/:tag', to: 'posts#index', as: "tagl"
+  resources :users
+  root 'listings#index'
+  resources :listings, only: [:create]
+  post 'tags', to: 'listings#index', as: "tag"
+  get 'tags/:tag', to: 'listings#index', as: "tagl"
 
 
 

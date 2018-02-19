@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 # Core Gems
 gem 'rails', '~> 4.1.4'
 gem 'sass-rails', '~> 4.0.3'
@@ -12,7 +13,6 @@ gem 'foundation-rails', '~> 5.3.3.0'
 gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
 gem 'byebug'
 gem 'clearance'
-gem 'ruby', '2.3.4'
 
   gem 'pg', '~> 0.17.1'
 gem 'figaro'

@@ -12,6 +12,7 @@ gem 'foundation-rails', '~> 5.3.3.0'
 gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
 gem 'byebug'
 gem 'clearance'
+gem 'ruby', '2.3.4'
 
   gem 'pg', '~> 0.17.1'
 gem 'figaro'
@@ -37,5 +38,4 @@ end
 gem 'rails_12factor', group: :production
 # RSpec
 group :test, :development do
-  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
 end

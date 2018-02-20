@@ -26,11 +26,28 @@ ActiveRecord::Schema.define(version: 20180214080508) do
   end
 
   create_table "listings", force: true do |t|
-    t.string   "author"
-    t.text     "content"
+    t.integer  "user_id"
+    t.string   "title"
+    t.integer  "price"
+    t.string   "location"
+    t.integer  "bedrooms"
+    t.float    "bathrooms"
+    t.text     "amenities"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "reservations", force: true do |t|
+    t.integer  "listing_id"
+    t.integer  "user_id"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservations", ["listing_id"], name: "index_reservations_on_listing_id", using: :btree
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "listing_id"

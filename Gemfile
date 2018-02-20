@@ -13,8 +13,9 @@ gem 'foundation-rails', '~> 5.3.3.0'
 gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
 gem 'byebug'
 gem 'clearance'
+gem 'carrierwave'
 
-  gem 'pg', '~> 0.17.1'
+gem 'pg', '~> 0.17.1'
 gem 'figaro'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

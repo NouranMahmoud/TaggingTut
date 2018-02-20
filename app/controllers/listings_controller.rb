@@ -17,6 +17,7 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
+    @listing.user_id = current_user[:id]
     respond_to do |format|
       if @listing.save
         format.js # Will search for create.js.erb
@@ -29,7 +30,7 @@ class ListingsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:author, :content, :all_tags, :tag)
+      params.require(:listing).permit(:title, :price, :location, :bedrooms, :bathrooms, :amenities, :description, :image, :all_tags, :tag)
     end
 end
 

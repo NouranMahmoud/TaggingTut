@@ -1,6 +1,9 @@
 class Listing < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through: :taggings
+  belongs_to :user
+
+  mount_uploader :image, ModelUploader
 
   #Getter and Setter for all_tags vertial attribute
   def all_tags=(names)

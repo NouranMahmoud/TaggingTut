@@ -1,12 +1,22 @@
 <%= div_for listing do %>
   <div class="large-12 columns border border-box glassy-bg mt pt">
-    <strong><%= h(listing.author) %></strong><br />
+    <strong><%= h(listing.title) %></strong><br />
     <sup class="text-muted">From <%= time_ago_in_words(listing.created_at)%></sup><br />
     <div class="mb pb">
-      <%= h(listing.content) %>
+      <%= h(listing.description) %>
     </div>
     <div class="tags">
       <%=raw tag_links(listing.all_tags)%>
     </div>
   </div>
 <% end %>
+
+<!-- 
+      t.belongs_to :user, foreign_key: true
+      t.string :title
+      t.integer :price
+      t.string :location
+      t.integer :bedrooms
+      t.float :bathrooms
+      t.text :amenities
+      t.text :description -->

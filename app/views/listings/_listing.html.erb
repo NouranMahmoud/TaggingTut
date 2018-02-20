@@ -4,6 +4,9 @@
     <sup class="text-muted">From <%= time_ago_in_words(listing.created_at)%></sup><br />
     <div class="mb pb">
       <%= h(listing.description) %>
+     <% listing.image.each do |f| %>
+      <img src=<%= h(f.url) %>>
+      <% end%>
     </div>
     <div class="tags">
       <%=raw tag_links(listing.all_tags)%>

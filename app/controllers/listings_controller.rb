@@ -1,4 +1,5 @@
 class ListingsController < ApplicationController
+
   def index
     if params[:tag]
       @listings = [] 
@@ -18,19 +19,25 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user[:id]
+    @listing.image = params["listing"]["image"]
+    # @listing.save
+    # redirect_to root_path
     respond_to do |format|
       if @listing.save
         format.js # Will search for create.js.erb
+        format.html { redirect_to root_path }
       else
         format.html { render root_path }
+        format.json { render root_path }
       end
     end
   end
 
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:title, :price, :location, :bedrooms, :bathrooms, :amenities, :description, :image, :all_tags, :tag)
+      params.require(:listing).permit(:title, :price, :location, :bedrooms, :bathrooms, :amenities, :description, {image:[]}, :all_tags, :tag)
     end
 end
 

@@ -2,7 +2,7 @@
   <% if current_user == nil%>
     <%= p "Please log in to create a listing"%>
   <% else %>
-    <%= form_for(Listing.new, remote: true) do |f| %>
+    <%= form_for(Listing.new, remote: true, multipart: true, authenticity_token: true) do |f| %>
       <div class="large-10 large-centered columns"> 
         <%= f.text_field :title, placeholder: "Listing title" %>
       </div>
@@ -27,8 +27,9 @@
       <div class="large-10 large-centered columns">
         <%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
       </div>
+      Image upload
       <div class="large-10 large-centered columns">
-        <%= f.file_field :image, placeholder: "Image" %>
+        <%= f.file_field :image, multiple: true, placeholder: "Images" %>
       </div>      
       <div class="large-10 large-centered columns">
         <%= f.submit "Submit!", class: "button"%>

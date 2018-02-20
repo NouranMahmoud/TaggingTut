@@ -10,8 +10,6 @@ class CreateListings < ActiveRecord::Migration
 	  	t.float :bathrooms
 	  	t.text :amenities
 	    t.text :description
-	    t.string :image
-
 	    t.timestamps
     end
   end

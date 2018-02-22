@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:new, :create, :destroy]
 
-  has_many :listings, :dependent => :delete_all
 
   # GET /users
   # GET /users.json

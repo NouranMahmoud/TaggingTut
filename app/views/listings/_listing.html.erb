@@ -1,12 +1,18 @@
 <%= div_for listing do %>
   <div class="large-12 columns border border-box glassy-bg mt pt">
-    <strong><%= h(listing.title) %></strong><br />
+    <strong><%= h(listing.title) %></strong>  $<strong class="inl"><%= h(listing.price) %></strong><br />
     <sup class="text-muted">From <%= time_ago_in_words(listing.created_at)%></sup><br />
+    <div><%= link_to 'Reserve This Listing', listing_path(listing.id) %></div>
     <div class="mb pb">
       <%= h(listing.description) %>
+      </div>
      <% listing.image.each do |f| %>
-      <img src=<%= h(f.url) %>>
+     <div class="inl">
+      <img src=<%= h(f.url) %> height=250px width=250px>
+      </div>
       <% end%>
+      <br/>
+    <div>
     </div>
     <div class="tags">
       <%=raw tag_links(listing.all_tags)%>

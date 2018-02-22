@@ -1,0 +1,68 @@
+
+<h1>New reservation</h1>
+
+<% @listing = Listing.find(params["id"]) %>
+ <% @listing.image.each do |f| %>
+     <div class="inl">
+      <img src=<%= h(f.url) %> height=250px width=250px>
+      </div>
+      <% end%>
+      <div>
+<b><%= @listing.title%>
+$<%= @listing.price%></b><br/>
+Location:
+<%= @listing.location%><br/>
+Bedrooms:
+<%= @listing.bedrooms%><br/>
+Bathrooms:
+<%= @listing.bathrooms%><br/>
+Amenities:
+<%= @listing.amenities%><br/>
+Description:
+<%= @listing.description%><br/>
+Owner email:
+<%= @listing.user.email%><br/>
+</div>
+<% x = ""%>
+  <% Reservation.where(listing_id:@listing.id).each do |f|%>
+    <% if f.date %>
+      <% x += f.date.to_s.gsub!(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '{from: "\1-\2-\3", to: "\4-\5-\6"},')%>
+    <% end %>
+  <% end %>
+<%= form_for(Reservation.new) do |f| %>
+  <div>
+  <%= f.hidden_field :listing_id, :value => params["id"] %>
+  </div>
+  <div>
+  <%= f.hidden_field :user_id, :value => current_user["id"] %>
+  </div>
+  <div class="large-10 large-centered columns"> 
+    <%= f.text_field :date, id: 'panel'%>
+  </div>
+  <div class="large-10 large-centered columns">
+    <%= f.submit "Submit!", class: "button"%>
+  </div>
+<% end %>
+
+
+
+<script type="text/javascript">
+
+
+flatpickr("#panel", {
+  minDate: "today",
+  mode: "range",
+  dateFormat: "Y-m-d",
+  disable: [ <%= raw(x)%> ]
+ 
+});
+
+
+
+</script>
+
+ 
+
+
+
+<%= link_to 'Back', root_path %>

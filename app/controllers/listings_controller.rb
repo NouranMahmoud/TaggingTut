@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
 
+
   def index
     if params[:tag]
       @listings = [] 
@@ -14,6 +15,8 @@ class ListingsController < ApplicationController
       @listings = Listing.all
     end
   end
+
+  
   
 
   def create
@@ -31,6 +34,11 @@ class ListingsController < ApplicationController
         format.json { render root_path }
       end
     end
+  end
+
+ # GET /listings/1
+  # GET /listings/1.json
+  def show
   end
 
 

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   
   resources :users, only: [:new]
+  resources :reservations
   root 'listings#index'
-  resources :listings, only: [:create]
+  resources :listings
   post 'tags', to: 'listings#index', as: "tag"
   get 'tags/:tag', to: 'listings#index', as: "tagl"
 

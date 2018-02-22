@@ -3,7 +3,6 @@ class CreateReservations < ActiveRecord::Migration
     create_table :reservations do |t|
       t.belongs_to :listing, index: true
       t.belongs_to :user, index: true
-      t.date :date
 
       t.timestamps
     end

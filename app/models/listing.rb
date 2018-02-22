@@ -2,6 +2,7 @@ class Listing < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through: :taggings
   belongs_to :user
+  has_many :reservations, :dependent => :delete_all
 
   mount_uploaders :image, ImageUploader
 

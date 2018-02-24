@@ -1,0 +1,57 @@
+
+<h1>Pay for reservation</h1>
+<% @reservation = Reservation.find(params[:id]) %>
+<% @listing = Listing.find_by(id:@reservation.listing_id) %>
+ <% @listing.image.each do |f| %>
+     <div class="inl">
+      <img src=<%= h(f.url) %> height=250px width=250px>
+      </div>
+      <% end%>
+      <div>
+<b><%= @listing.title%>
+$<%= @listing.price%></b><br/>
+Location:
+<%= @listing.location%><br/>
+Bedrooms:
+<%= @listing.bedrooms%><br/>
+Bathrooms:
+<%= @listing.bathrooms%><br/>
+Amenities:
+<%= @listing.amenities%><br/>
+Description:
+<%= @listing.description%><br/>
+Owner email:
+<%= @listing.user.email%><br/>
+</div>
+ 
+
+<% if !@reservation.paid %>
+
+
+
+  <%= form_tag charges_path do %>
+  <%= hidden_field_tag :id, @reservation.id %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+
+      <label class="amount">
+        <span id='lab'> $<%= @reservation.cost.to_i / 100.00 %>0</span>
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Listing payment"
+            data-amount=<%= @reservation.cost %>
+            data-locale="auto"></script>
+  
+
+ 
+  <% end %>
+<% end %>
+
+<%= link_to 'Back', root_path %>

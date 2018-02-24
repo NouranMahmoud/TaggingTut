@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   resources :users, only: [:new]
+  resources :charges
   resources :reservations
   root 'listings#index'
   resources :listings

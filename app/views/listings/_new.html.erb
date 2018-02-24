@@ -2,6 +2,7 @@
   <% if current_user == nil%>
     <%= p "Please log in to create a listing"%>
   <% else %>
+      Create Listing
     <%= form_for(Listing.new, remote: true, multipart: true, authenticity_token: true) do |f| %>
       <div class="large-10 large-centered columns"> 
         <%= f.text_field :title, placeholder: "Listing title" %>

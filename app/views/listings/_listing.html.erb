@@ -10,12 +10,22 @@
      <div class="inl">
       <img src=<%= h(f.url) %> height=250px width=250px>
       </div>
+     
       <% end%>
+      <br>
+      <br>
+       <iframe
+  width="500px"
+  height="250px"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBX8hQcoSEtucwisPltvD2u0Xsl7nZg77I
+    &q=<%= h(listing.location).gsub(/(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)/, '\1+\2\3+\4+\5+\6+\7+\8')%>&q=seattle+washington&q=arizona" allowfullscreen>
+</iframe>
       <br/>
     <div>
     </div>
-    <div class="tags">
-      <%=raw tag_links(listing.all_tags)%>
+    <div class="tags"><h4>
+      <%=raw tag_links(listing.all_tags)%></h4>
     </div>
   </div>
 <% end %>

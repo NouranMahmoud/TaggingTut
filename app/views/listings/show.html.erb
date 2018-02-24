@@ -1,3 +1,98 @@
-<div class="top-pad glassy-bg">
-      <%= render partial: "reservations/new" %>
-    </div>
+
+<h1>New reservation</h1>
+
+<% @listing = Listing.find(params["id"]) %>
+ <% @listing.image.each do |f| %>
+     <div class="inl">
+      <img src=<%= h(f.url) %> height=250px width=250px>
+      </div>
+      <% end%>
+      <div>
+<b><%= @listing.title%>
+$<%= @listing.price%></b><br/>
+Location:
+<%= @listing.location%><br/>
+Bedrooms:
+<%= @listing.bedrooms%><br/>
+Bathrooms:
+<%= @listing.bathrooms%><br/>
+Amenities:
+<%= @listing.amenities%><br/>
+Description:
+<%= @listing.description%><br/>
+Owner email:
+<%= @listing.user.email%><br/>
+</div>
+
+
+ 
+<%= form_for(Reservation.new) do |f| %>
+  <div>
+  <%= f.hidden_field :listing_id, :value => params["id"] %>
+  </div>
+  <div>
+  <%= f.hidden_field :user_id, :value => current_user["id"] %>
+  </div>
+  <div class="large-10 large-centered columns" id="pan"> 
+    <%= f.text_field :date, id: 'panel'%>
+  </div>
+  <div class="large-10 large-centered columns">
+    <%= f.submit "Submit!", class: "button"%>
+  </div>
+<% end %>
+  
+<script type="text/javascript">
+
+
+
+flatpickr("#panel", {
+  minDate: "today",
+  mode: "range",
+  dateFormat: "Y-m-d",
+  disable: [ <%=raw(@listing.used_date)%> ]
+ 
+});
+
+function replacer1(match, p1, p2, p3, p4, p5, p6, offset, string) {
+  // p1 is nondigits, p2 digits, and p3 non-alphanumerics
+  return [p6]
+};
+
+function replacer2(match, p1, p2, p3, p4, p5, p6, offset, string) {
+  // p1 is nondigits, p2 digits, and p3 non-alphanumerics
+  return [p3]
+};
+panel.onchange = function (){
+
+
+var p1 = panel.value.replace(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, replacer1);
+var p2 = panel.value.replace(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, replacer2);
+var payment = 1 + (p1 - p2);
+document.getElementById("lab").innerHTML = "Amount: $" + (payment * 5.00);
+
+
+};
+
+</script>
+
+
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span id='lab'></span>
+    </label>
+  </article>
+
+<% end %>
+
+
+ 
+
+
+
+<%= link_to 'Back', root_path %>

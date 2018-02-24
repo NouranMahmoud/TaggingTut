@@ -18,6 +18,7 @@ gem 'fog-aws'
 
 gem 'pg', '~> 0.17.1'
 gem 'figaro'
+gem 'stripe'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Reservation paid for!! </h1>
+    <p>
+
+ <% @listing.image.each do |f| %>
+     <div class="inl">
+      <img src=<%= h(f.url) %> height=250px width=250px>
+      </div>
+      <% end%>
+      <div>
+<b><%= @listing.title%>
+$<%= @listing.price%></b><br/>
+Location:
+<%= @listing.location%><br/>
+Bedrooms:
+<%= @listing.bedrooms%><br/>
+Bathrooms:
+<%= @listing.bathrooms%><br/>
+Amenities:
+<%= @listing.amenities%><br/>
+Description:
+<%= @listing.description%><br/>
+Owner email:
+<%= @listing.user.email%><br/>
+</div>
+
+    </p>
+    <p>Thank you for paying </p>
+
+  </body>
+</html>

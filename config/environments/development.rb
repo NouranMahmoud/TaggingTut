@@ -34,13 +34,15 @@ Rails.application.configure do
 
 config.action_mailer.default_url_options = { host: 'https://ancient-headland-22384.herokuapp.com/' }
 
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.delivery_method = :sendmail
+config.action_mailer.perform_deliveries = true
+config.action_mailer.sendmail_settings = {
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'gmail.com',
-  user_name:            '<willybishop33>',
-  password:             '<willybishop1>',
+  user_name:            'willybishop33@gmail.com',
+  password:             'willybishop1',
   authentication:       'plain',
   enable_starttls_auto: true  }
 

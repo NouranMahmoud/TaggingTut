@@ -68,7 +68,7 @@ panel.onchange = function (){
 var p1 = panel.value.replace(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, replacer1);
 var p2 = panel.value.replace(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, replacer2);
 var payment = 1 + (p1 - p2);
-document.getElementById("lab").innerHTML = "Amount: $" + (payment * 5.00);
+document.getElementById("lab").innerHTML = "Amount: $" + (payment * <%= @listing.price %>);
 
 
 };

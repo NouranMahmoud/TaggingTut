@@ -21,7 +21,7 @@ class ReservationsController < ApplicationController
    @reservation.cost = (@reservation.end_date - @reservation.start_date + 1) * @listing.price * 100
    @reservation.save
 
-   ReservationMailer.welcome_email(current_user).deliver_now
+   ReservationMailer.welcome_email(current_user)
    redirect_to reservation_path(@reservation.id), notice: 'Reservation was successfully created, please pay now'
 
     # respond_to do |format|

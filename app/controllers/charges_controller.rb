@@ -28,6 +28,7 @@ class ChargesController < ApplicationController
 	  @listing.save
 	  @reservation.paid = true
 	  @reservation.save
+	  redirect_to root_path, notice: 'Reservation paid for, thank you!'
 
 
 	rescue Stripe::CardError => e

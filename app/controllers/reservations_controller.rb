@@ -15,15 +15,14 @@ class ReservationsController < ApplicationController
   # POST /users.json
   def create
    @reservation = Reservation.new(reservation_params)
+   @listing = Listing.find(@reservation.listing_id)
    @reservation.start_date = Date.parse @reservation.date.to_s.gsub(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '\1-\2-\3')
    @reservation.end_date = Date.parse @reservation.date.to_s.gsub(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '\4-\5-\6')
-   @reservation.cost = (@reservation.end_date - @reservation.start_date + 1) * 500
-   if @reservation.cost < 0
-      @reservation.cost += 15000 
-   end
+   @reservation.cost = (@reservation.end_date - @reservation.start_date + 1) * @listing.price * 100
    @reservation.save
+
    ReservationMailer.welcome_email(current_user).deliver_now
-   redirect_to reservation_path(@reservation.id), notice: 'Reservation was successfully created.'
+   redirect_to reservation_path(@reservation.id), notice: 'Reservation was successfully created, please pay now'
 
     # respond_to do |format|
     #   if @reservation.save

@@ -22,6 +22,7 @@ class ReservationsController < ApplicationController
       @reservation.cost += 15000 
    end
    @reservation.save
+   ReservationMailer.welcome_email(current_user).deliver_now
    redirect_to reservation_path(@reservation.id), notice: 'Reservation was successfully created.'
 
     # respond_to do |format|

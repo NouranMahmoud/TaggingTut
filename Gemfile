@@ -15,6 +15,7 @@ gem 'byebug'
 gem 'clearance'
 gem 'carrierwave', '~> 1.0'
 gem 'fog-aws'
+gem 'mail'
 
 gem 'pg', '~> 0.17.1'
 gem 'figaro'

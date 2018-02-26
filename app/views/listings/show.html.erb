@@ -25,7 +25,7 @@ Owner email:
 </div>
 
 
- 
+ <% if !current_user.nil? %>
 <%= form_for(Reservation.new) do |f| %>
   <div>
   <%= f.hidden_field :listing_id, :value => params["id"] %>
@@ -91,7 +91,10 @@ document.getElementById("lab").innerHTML = "Amount: $" + (payment * 5.00);
 <% end %>
 
 
- 
+ <% else %>
+ <center> please log in to reserve a listing</center>
+ <% end%>
+ <br/>
 
 
 

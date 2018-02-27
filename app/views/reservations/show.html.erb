@@ -1,10 +1,10 @@
 
-<h1>Pay for reservation</h1>
+<center><h1>Pay for reservation</h1>
 <% @reservation = Reservation.find(params[:id]) %>
 <% @listing = Listing.find_by(id:@reservation.listing_id) %>
- <% @listing.image.each do |f| %>
+ <% @listing.image.first(2).each do |f| %>
      <div class="inl">
-      <img src=<%= h(f.url) %> height=250px width=250px>
+      <img src=<%= h(f.url) %> height=400px width=400px>
       </div>
       <% end%>
       <div>
@@ -22,7 +22,10 @@ Description:
 <%= @listing.description%><br/>
 Owner email:
 <%= @listing.user.email%><br/>
-</div>
+
+<b>Dates Reserved:
+<%= @reservation.date%><br/>
+</b></div>
  
 
 <% if !@reservation.paid %>
@@ -39,7 +42,7 @@ Owner email:
       <% end %>
 
       <label class="amount">
-        <span id='lab'> $<%= @reservation.cost.to_i / 100.00 %>0</span>
+        <b><h3 id='lab'>Total: $<%= @reservation.cost.to_i / 100.00 %>0</h3></b>
       </label>
     </article>
 
@@ -55,3 +58,4 @@ Owner email:
 <% end %>
 
 <%= link_to 'Back', root_path %>
+</center>

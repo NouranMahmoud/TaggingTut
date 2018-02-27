@@ -23,17 +23,8 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user[:id]
     @listing.image = params["listing"]["image"]
-    # @listing.save
-    # redirect_to root_path
-    respond_to do |format|
-      if @listing.save
-        format.js # Will search for create.js.erb
-        format.html { redirect_to root_path }
-      else
-        format.html { render root_path }
-        format.json { render root_path }
-      end
-    end
+    @listing.save
+    redirect_to root_path
   end
 
  # GET /listings/1

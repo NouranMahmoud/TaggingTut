@@ -9,7 +9,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   storage :fog
   # storage :fog
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg gif png webp)
   end
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

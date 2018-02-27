@@ -1,6 +1,19 @@
+<div id="flash" align='center'>
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+     
+    </div>
+    
+    </nav>
+    <nav class="header text-center">
+      <h3>Find or create a listing</h3>
+    </nav>
+
 
 <div class="row mt pt">
-  <div class="large-5 columns">
+  <div class="large-5 columns" align='right'>
   <%= form_tag(tag_path, method: :post) do %>
 
   <%= submit_tag 'Search', name: nil %>
@@ -10,30 +23,55 @@
     <div class="top-pad glassy-bg">
       <%= render partial: "listings/new" %>
     </div>
-    <div class="tags-cloud glassy-bg">
+    <div class="tags-cloud glassy-bg" align="center">
 
-    <div class="inl">
-      <h4>Tags Cloud</h4>
+    
+      <h4 align="center">Tags Cloud</h4>
       <% tag_cloud Tag.counts, %w{css1 css2 css3 css4} do |tag, css_class| %>
         <%= link_to tag.name, tagl_path(tag.name), class: css_class %>,
       <% end %>
       </div>
-    </div>
+    
 
   
   </div>
-  <center><h2> Listings</h2></center>
   <div class= "large-7 columns" id="listings">
 
     <%= render partial: @listings.reverse %>
 
-
-    <%# i = 0 %>
-    <%# while i < @posts.collect(&:tags).flatten.uniq.length %> 
-    <%#= @posts.collect(&:tags).flatten.uniq[i][:name] %>
-    <%# i+= 1 %>
-    <%#end%>
-    <!-- raw tag_links(post.all_tags) -->
-    <%#= render text: Hash[@posts.group_by{ |author| author }.map{ |k,v| v.size >= 1 && [k, v.size] }]%>
   </div>
 </div>
+
+<div class='lightbox hidden'><div class='lightbox-content'>
+  <a href="#" class='lightbox-close'>Close</a><br/><div class='lightbox-image'>
+  <img src="https://images-na.ssl-images-amazon.com/images/I/51Me0XRhfxL._AA300_.jpg">
+</div>
+
+<script>
+
+  const closeButton = document.querySelector('.lightbox');
+  const lightbox = document.querySelector('.lightbox');
+  const lightboxImage = document.querySelector('.lightbox-image');
+
+  function showImage(event){
+    lightbox.classList.remove('hidden');
+    const elementClickedOn = event.target;
+    const galleryItemParent = elementClickedOn.parentElement;
+    lightboxImage.innerHTML = galleryItemParent.innerHTML;
+  }
+
+  function hideImage(event){
+    event.preventDefault();
+    lightbox.classList.add('hidden');
+  }
+
+  closeButton.onclick = hideImage;
+
+
+
+  const galleryItems = document.querySelectorAll('.inl');
+  for (i=0;i<galleryItems.length;i++){
+    let item = galleryItems[i]
+    item.onclick = showImage;
+  }
+  </script>

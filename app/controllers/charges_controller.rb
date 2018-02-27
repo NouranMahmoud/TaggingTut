@@ -28,6 +28,7 @@ class ChargesController < ApplicationController
 	  @listing.save
 	  @reservation.paid = true
 	  @reservation.save
+	  ReservationMailer.paid_email(current_user, @listing, @reservation).deliver
 	  redirect_to root_path, notice: 'Reservation paid for, thank you!'
 
 

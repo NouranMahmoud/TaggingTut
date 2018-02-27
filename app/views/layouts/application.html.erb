@@ -8,33 +8,25 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
-    <title><%= content_for?(:title) ? yield(:title) : "Tagging System" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "PairBNB" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+
+<nav class="nav-bar" data-topbar role="navigation">
+  <body><h2 color="gray"> <%= link_to "PairBNB", root_path %></h2>
+  <div align='right' class='pr'>
     <% if signed_in? %>
       Signed in as: <%= current_user.email %>
-      <%= button_to 'Sign out', sign_out_path, method: :delete %>
+      <%= button_to 'Sign out', sign_out_path, method: :delete, class: "button" %>
     <% else %>
-      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+      <a href="/auth/facebook">
+      <img src="https://s3-ap-southeast-1.amazonaws.com/airbnb-photos-nextacademy/facebook-sign-in-button.png" width=220px height=220px> </a>
     <% end %>
-
-    <nav class="nav-bar" data-topbar role="navigation">
-     <h2 color="gray"> <%= link_to "PairBNB", root_path %></h2>
-    
-    <div id="flash">
-      <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
-      <% end %>
     </div>
-    </nav>
-    <nav class="header text-center">
-      <h3>Find or create a listing</h3>
-    </nav>
     <%= yield %>
     <footer>
       All rights are reserved

@@ -1,10 +1,12 @@
 
+<link rel="stylesheet" type="text/css" href="../assets/stylesheets/picturegrids.css">
+
 <h1>New reservation</h1>
 
 <% @listing = Listing.find(params["id"]) %>
  <% @listing.image.each do |f| %>
-     <div class="inl">
-      <img src=<%= h(f.url) %> height=250px width=250px>
+     <div class="inl"=>
+      <img src=<%= h(f.url) %> width=300px height=300px>
       </div>
       <% end%>
       <div>
@@ -26,6 +28,19 @@ Owner email:
 
 
  <% if !current_user.nil? %>
+ <center>Pick your reservation dates!<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <h1><span id='lab'></span></h1>
+    </label>
+  </article>
+
+<% end %></center>
 <%= form_for(Reservation.new) do |f| %>
   <div>
   <%= f.hidden_field :listing_id, :value => params["id"] %>
@@ -36,6 +51,7 @@ Owner email:
   <div class="large-10 large-centered columns" id="pan"> 
     <%= f.text_field :date, id: 'panel'%>
   </div>
+
   <div class="large-10 large-centered columns">
     <%= f.submit "Submit!", class: "button"%>
   </div>
@@ -76,25 +92,50 @@ document.getElementById("lab").innerHTML = "Amount: $" + (payment * <%= @listing
 </script>
 
 
-<%= form_tag charges_path do %>
-  <article>
-    <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
-    <% end %>
-    <label class="amount">
-      <span id='lab'></span>
-    </label>
-  </article>
 
-<% end %>
 
 
  <% else %>
  <center> please log in to reserve a listing</center>
  <% end%>
  <br/>
+
+
+
+<div class='lightbox hidden'><div class='lightbox-content'>
+  <a href="#" class='lightbox-close'>Close</a><br/><div class='lightbox-image'>
+  <img src="https://images-na.ssl-images-amazon.com/images/I/51Me0XRhfxL._AA300_.jpg">
+</div>
+
+<script>
+
+  const closeButton = document.querySelector('.lightbox');
+  const lightbox = document.querySelector('.lightbox');
+  const lightboxImage = document.querySelector('.lightbox-image');
+
+  function showImage(event){
+    lightbox.classList.remove('hidden');
+    const elementClickedOn = event.target;
+    const galleryItemParent = elementClickedOn.parentElement;
+    lightboxImage.innerHTML = galleryItemParent.innerHTML;
+  }
+
+  function hideImage(event){
+    event.preventDefault();
+    lightbox.classList.add('hidden');
+  }
+
+  closeButton.onclick = hideImage;
+
+
+
+  const galleryItems = document.querySelectorAll('.inl');
+  for (i=0;i<galleryItems.length;i++){
+    let item = galleryItems[i]
+    item.onclick = showImage;
+  }
+  </script>
+
 
 
 

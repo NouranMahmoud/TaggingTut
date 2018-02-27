@@ -2,10 +2,3 @@ var new_listing = $("<%= escape_javascript(render(partial: @listing))%>").hide()
 $('#listings').prepend(new_listing);
 $('#listing_<%= @listing.id %>').fadeIn('slow');
 $('#new_listing')[0].reset();
-
-
-
-  <% pane = panel.value %>
-<% if !pane.value.to_s.gsub(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '\6').to_i.nil?%>
-  <% payment = @listing.price*((pane.value.to_s.gsub(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '\6').to_i) + 1 - (pane.value.to_s.gsub(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '\3').to_i))%>
-<%end%>

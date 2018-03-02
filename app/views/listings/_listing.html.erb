@@ -8,14 +8,13 @@
       </div>
      <% listing.image.first(4).each do |f| %>
      <div class="inl">
-      <img src=<%= h(f.url) %> height=250px width=250px>
+      <img class="pics" src=<%= h(f.url) %> >
       </div>
      
       <% end%>
       <br>
       <br>
-       <iframe
-  width="500px"
+       <iframe class ="pic"
   height="250px"
   frameborder="0" style="border:0"
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBX8hQcoSEtucwisPltvD2u0Xsl7nZg77I

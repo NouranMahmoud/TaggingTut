@@ -35,11 +35,20 @@
 
   
   </div>
-  <div class= "large-7 columns" id="listings">
+
+<h1><center>Featured Listing </center></h1>
+  <div class= "large-7 columns" id="listings" class="my-listings">
 
     <%= render partial: @listings.reverse %>
+</div>
 
-  </div>
+
+<div id="my-listings">
+</div>
+
+<div id="infinite-scrolling">
+  <%= will_paginate @listings %>
+</div>
 </div>
 
 <div class='lightbox hidden'><div class='lightbox-content'>

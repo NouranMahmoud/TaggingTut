@@ -44,8 +44,13 @@ GEM
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    betterlorem (0.1.2)
     binding_of_caller (0.7.3)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.0.3.0)
+      sass (~> 3.2)
+    bootstrap-will_paginate (0.0.11)
+      will_paginate
     builder (3.2.3)
     byebug (10.0.0)
     carrierwave (1.0.0)
@@ -95,6 +100,8 @@ GEM
     foundation-rails (5.3.3.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
+    given_core (3.8.0)
+      sorcerer (>= 0.3.7)
     hashie (3.5.7)
     hike (1.2.3)
     i18n (0.9.4)
@@ -164,11 +171,18 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.19.0)
     rake (12.3.0)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
     rspec-core (3.7.1)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
+    rspec-given (3.8.0)
+      given_core (= 3.8.0)
+      rspec (>= 2.14.0)
     rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
@@ -187,6 +201,7 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
+    sorcerer (1.0.2)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -209,6 +224,7 @@ GEM
     unicorn (5.4.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
+    will_paginate (3.0.12)
 
 PLATFORMS
   ruby
@@ -216,7 +232,10 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   better_errors (~> 1.1.0)
+  betterlorem (~> 0.1.2)
   binding_of_caller (~> 0.7.2)
+  bootstrap-sass (~> 3.0.3.0)
+  bootstrap-will_paginate (~> 0.0.10)
   byebug
   carrierwave (~> 1.0)
   clearance
@@ -235,11 +254,13 @@ DEPENDENCIES
   rails3_serve_static_assets!
   rails_12factor
   rails_log_stdout!
+  rspec-given
   rspec-rails (~> 3.5, >= 3.5.2)
   sass-rails (~> 4.0.3)
   stripe
   uglifier (~> 2.5.3)
   unicorn
+  will_paginate (~> 3.0.5)
 
 BUNDLED WITH
    1.16.1

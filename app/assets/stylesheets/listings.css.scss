@@ -27,6 +27,18 @@
   }
 }
 
+.pics{
+  padding-top: 3px;
+  position: relative;
+  width: 49%;
+  height: 100%;
+}
+
+.pic{
+  position: relative;
+  width: 100%;
+}
+
 .tags-cloud {
   margin-top: 16px;
   padding: 14px;
@@ -82,5 +94,5 @@ footer {
 
 .inl{
 
-  display: inline-block;
+  display: inline;
 }

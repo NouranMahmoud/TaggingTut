@@ -4,6 +4,8 @@ class Listing < ActiveRecord::Base
   belongs_to :user
   has_many :reservations, :dependent => :delete_all
 
+  self.per_page = 1
+
   mount_uploaders :image, ImageUploader
 
   #Getter and Setter for all_tags vertial attribute

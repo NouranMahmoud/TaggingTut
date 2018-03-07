@@ -28,9 +28,7 @@ class ListingsController < ApplicationController
     @listing.user_id = current_user[:id]
     @listing.image = params["listing"]["image"]
     @listing.save
-     respond_to do |format|
-        format.js
-        format.html
+    redirect_to root_path
       end
   end
 

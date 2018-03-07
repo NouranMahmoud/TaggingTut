@@ -58,7 +58,9 @@
   (function() {
   jQuery(function() {
       $(window).on('scroll', function() {
+        console.log('scroll')
     if ($('#infinite-scrolling').size() > 0) {
+      console.log('infinite-scrolling')
         var more_listings_url;
         more_listings_url = $('.pagination .next_page a').attr('href');
         if (more_listings_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60) {

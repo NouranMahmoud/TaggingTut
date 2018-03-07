@@ -47,8 +47,10 @@
 </div>
 
 <div id="infinite-scrolling" class="pics">
+<% if @listings != [] %>
 <% @listings = @listings.paginate(:page => 1, :per_page => 2) %>
   <%= will_paginate @listings %>
+  <% end %>
 </div>
 </div>
 

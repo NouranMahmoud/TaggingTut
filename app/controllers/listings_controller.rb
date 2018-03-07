@@ -28,7 +28,10 @@ class ListingsController < ApplicationController
     @listing.user_id = current_user[:id]
     @listing.image = params["listing"]["image"]
     @listing.save
-    redirect_to root_path
+     respond_to do |format|
+        format.js
+        format.html
+      end
   end
 
  # GET /listings/1
@@ -36,11 +39,17 @@ class ListingsController < ApplicationController
   def show
   end
 
+  def destroy
+    @listing = Listing.find(params[:id])
+    @listing.destroy
+    redirect_to root_path
+  end
+
 
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:page, :title, :price, :location, :bedrooms, :bathrooms, :amenities, :description, {image:[]}, :used_date, :all_tags, :tag)
+      params.require(:listing).permit(:id, :page, :title, :price, :location, :bedrooms, :bathrooms, :amenities, :description, {image:[]}, :used_date, :all_tags, :tag)
     end
 end
 

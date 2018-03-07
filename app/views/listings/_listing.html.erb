@@ -4,10 +4,15 @@
     <sup class="text-muted">From <%= time_ago_in_words(listing.created_at)%></sup><br />
     <div class="mb pb"> <%= h(listing.description) %> </div>
     
-    <div class="reserve"><%= button_to 'Check out this listing', listing_path(listing.id), class: "button" %></b></div>
+    <div class="reserve"><%= button_to 'Check out this listing', listing_path(listing.id), method: :get, class: "button" %></b></div>
    
      <a class="inl" href=<%=listing_path(listing.id)%>>
+     <%if listing.image.first != nil %>
       <img class="pics" src=<%= h(listing.image.first.url) %> >
+      <%end%>
+      <%#if listing.user_id == current_user[:id] %>
+      <%#= link_to "Delete Listing", listing_path(listing.id), method: :delete%>
+      <%#end%>
       </a>
       <br>
       <br>

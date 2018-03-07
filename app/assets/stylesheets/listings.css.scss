@@ -30,13 +30,23 @@
 .pics{
   padding-top: 3px;
   position: relative;
-  width: 49%;
-  height: 100%;
+  width: 99%;
+  height: 99%;
+}
+.button:hover{
+  transform: scale(1.05);
 }
 
-.pic{
+
+
+.pics:hover{
+  transform: scale(1.02);
+}
+
+.map{
   position: relative;
-  width: 100%;
+  width: 99%;
+  height: 250px;
 }
 
 .tags-cloud {
@@ -55,12 +65,9 @@
 }
 
 .reserve{
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 3px;
-  border-color: lightblue;
+  border-radius: 3px;;
   text-align:center;
-  background-color: white;
+  color: white;
   display: inline-block;
 }
 

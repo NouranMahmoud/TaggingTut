@@ -2,23 +2,20 @@
   <div class="large-12 columns border border-box glassy-bg mt pt">
     <strong><%= h(listing.title) %></strong>  $<strong class="inl"><%= h(listing.price) %></strong><br />
     <sup class="text-muted">From <%= time_ago_in_words(listing.created_at)%></sup><br />
-    <div class="reserve"><b><%= link_to 'Check Out This Listing', listing_path(listing.id) %></b></div>
-    <div class="mb pb">
-      <%= h(listing.description) %>
-      </div>
-     <% listing.image.first(4).each do |f| %>
-     <div class="inl">
-      <img class="pics" src=<%= h(f.url) %> >
-      </div>
-     
-      <% end%>
+    <div class="mb pb"> <%= h(listing.description) %> </div>
+    
+    <div class="reserve"><%= button_to 'Check out this listing', listing_path(listing.id), class: "button" %></b></div>
+   
+     <a class="inl" href=<%=listing_path(listing.id)%>>
+      <img class="pics" src=<%= h(listing.image.first.url) %> >
+      </a>
       <br>
       <br>
-       <iframe class ="pic"
+       <iframe class ="map"
   height="250px"
   frameborder="0" style="border:0"
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBX8hQcoSEtucwisPltvD2u0Xsl7nZg77I
-    &q=<%= h(listing.location).gsub(/(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)/, '\1+\2\3+\4+\5+\6+\7+\8')%>&q=seattle+washington&q=arizona" allowfullscreen>
+    &q=<%= h(listing.location).gsub(/(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)\s?(\S*)/, '\1+\2+\3+\4+\5+\6+\7+\8')%>&q=seattle+washington&q=arizona" allowfullscreen>
 </iframe>
       <br/>
     <div>

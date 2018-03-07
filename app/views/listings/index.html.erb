@@ -46,41 +46,10 @@
 <div id="my-listings">
 </div>
 
-<div id="infinite-scrolling">
+<div id="infinite-scrolling" class="pics">
+<% @listings = @listings.paginate(:page => 1, :per_page => 2) %>
   <%= will_paginate @listings %>
 </div>
 </div>
 
-<div class='lightbox hidden'><div class='lightbox-content'>
-  <a href="#" class='lightbox-close'>Close</a><br/><div class='lightbox-image'>
-  <img src="https://images-na.ssl-images-amazon.com/images/I/51Me0XRhfxL._AA300_.jpg">
-</div>
 
-<script>
-
-  const closeButton = document.querySelector('.lightbox');
-  const lightbox = document.querySelector('.lightbox');
-  const lightboxImage = document.querySelector('.lightbox-image');
-
-  function showImage(event){
-    lightbox.classList.remove('hidden');
-    const elementClickedOn = event.target;
-    const galleryItemParent = elementClickedOn.parentElement;
-    lightboxImage.innerHTML = galleryItemParent.innerHTML;
-  }
-
-  function hideImage(event){
-    event.preventDefault();
-    lightbox.classList.add('hidden');
-  }
-
-  closeButton.onclick = hideImage;
-
-
-
-  const galleryItems = document.querySelectorAll('.inl');
-  for (i=0;i<galleryItems.length;i++){
-    let item = galleryItems[i]
-    item.onclick = showImage;
-  }
-  </script>

@@ -14,8 +14,3 @@
 //= require jquery_ujs
 //= require foundation
 //= require_tree .
-= require flatpickr
-import flatpickr from "flatpickr"
-const flatpickr = require("flatpickr")
-
-$(function(){ $(document).foundation(); });

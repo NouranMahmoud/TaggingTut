@@ -10,6 +10,15 @@ GIT
   specs:
     rails_log_stdout (0.0.1)
 
+GIT
+  remote: https://209baf9bef0a7b1febbda2b0d38d46dbd0f1233b:x-oauth-basic@github.com/thrugsis/clearance.git
+  revision: 17883049a6e4cb85b44b1adaa1db0d89c74c69be
+  specs:
+    clearance (1.16.1)
+      bcrypt
+      email_validator (~> 1.4)
+      rails (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -57,10 +66,6 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-    clearance (1.16.1)
-      bcrypt
-      email_validator (~> 1.4)
-      rails (>= 3.1)
     coderay (1.1.2)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -238,7 +243,7 @@ DEPENDENCIES
   bootstrap-will_paginate (~> 0.0.10)
   byebug
   carrierwave (~> 1.0)
-  clearance
+  clearance!
   coffee-rails (~> 4.0.1)
   figaro
   fog-aws

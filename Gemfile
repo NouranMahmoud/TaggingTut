@@ -12,7 +12,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'foundation-rails', '~> 5.3.3.0'
 gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
 gem 'byebug'
-gem 'clearance'
+gem 'clearance', git: "https://209baf9bef0a7b1febbda2b0d38d46dbd0f1233b:x-oauth-basic@github.com/thrugsis/clearance.git"
 gem 'carrierwave', '~> 1.0'
 gem 'fog-aws'
 gem 'mail'

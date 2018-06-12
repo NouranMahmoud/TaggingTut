@@ -1,0 +1,141 @@
+
+<link rel="stylesheet" type="text/css" href="../assets/stylesheets/picturegrids.css">
+
+<h1>New reservation</h1>
+
+<% @listing = Listing.find(params["id"]) %>
+ <% @listing.image.each do |f| %>
+     <div class="inl"=>
+      <img src=<%= h(f.url) %> width=300px height=300px>
+      </div>
+      <% end%>
+      <div>
+<b><%= @listing.title%>
+$<%= @listing.price%></b><br/>
+Location:
+<%= @listing.location%><br/>
+Bedrooms:
+<%= @listing.bedrooms%><br/>
+Bathrooms:
+<%= @listing.bathrooms%><br/>
+Amenities:
+<%= @listing.amenities%><br/>
+Description:
+<%= @listing.description%><br/>
+Owner email:
+<%= @listing.user.email%><br/>
+</div>
+
+ <% if !current_user.nil? %>
+ <center>Pick your reservation dates!<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <h1><span id='lab'></span></h1>
+    </label>
+  </article>
+
+<% end %></center>
+<%= form_for(Reservation.new) do |f| %>
+  <div>
+  <%= f.hidden_field :listing_id, :value => params["id"] %>
+  </div>
+  <div>
+  <%= f.hidden_field :user_id, :value => current_user["id"] %>
+  </div>
+  <div class="large-10 large-centered columns" id="pan"> 
+    <%= f.text_field :date, id: 'panel'%>
+  </div>
+
+  <div class="large-10 large-centered columns">
+    <%= f.submit "Submit!", class: "button"%>
+  </div>
+<% end %>
+  
+<script type="text/javascript">
+
+
+
+flatpickr("#panel", {
+  minDate: "today",
+  mode: "range",
+  dateFormat: "Y-m-d",
+  disable: [ <%=raw(@listing.used_date)%> ]
+ 
+});
+
+function replacer1(match, p1, p2, p3, p4, p5, p6, offset, string) {
+  // p1 is nondigits, p2 digits, and p3 non-alphanumerics
+  return [p6]
+};
+
+function replacer2(match, p1, p2, p3, p4, p5, p6, offset, string) {
+  // p1 is nondigits, p2 digits, and p3 non-alphanumerics
+  return [p3]
+};
+panel.onchange = function (){
+
+
+var p1 = panel.value.replace(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, replacer1);
+var p2 = panel.value.replace(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, replacer2);
+var payment = 1 + (p1 - p2);
+document.getElementById("lab").innerHTML = "Amount: $" + (payment * <%= @listing.price %>);
+
+
+};
+
+</script>
+
+
+
+
+
+ <% else %>
+ <center> please log in to reserve a listing</center>
+ <% end%>
+ <br/>
+
+
+
+<div class='lightbox hidden'><div class='lightbox-content'>
+  <a href="#" class='lightbox-close'>Close</a><br/><div class='lightbox-image'>
+  <img src="">
+</div>
+
+<script>
+
+  const closeButton = document.querySelector('.lightbox');
+  const lightbox = document.querySelector('.lightbox');
+  const lightboxImage = document.querySelector('.lightbox-image');
+
+  function showImage(event){
+    lightbox.classList.remove('hidden');
+    const elementClickedOn = event.target;
+    const galleryItemParent = elementClickedOn.parentElement;
+    lightboxImage.innerHTML = galleryItemParent.innerHTML;
+  }
+
+  function hideImage(event){
+    event.preventDefault();
+    lightbox.classList.add('hidden');
+  }
+
+  closeButton.onclick = hideImage;
+
+
+
+  const galleryItems = document.querySelectorAll('.inl');
+  for (i=0;i<galleryItems.length;i++){
+    let item = galleryItems[i]
+    item.onclick = showImage;
+  }
+  </script>
+
+
+
+
+<%= link_to 'Back', root_path %>

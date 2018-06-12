@@ -1,0 +1,17 @@
+
+
+development:
+  :address: smtp.gmail.com
+  :port: 587
+  :authentication: plain
+  :user_name: willybishop33@gmail.com
+  :password: willybishop1
+  :enable_starttls_auto: true
+production:
+  :address: smtp.gmail.com
+  :port: 587
+  :authentication: plain
+  :user_name: willybishop33@gmail.com
+  :password: willybishop1
+  :enable_starttls_auto: true
+

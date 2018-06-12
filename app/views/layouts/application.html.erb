@@ -3,22 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-    <title><%= content_for?(:title) ? yield(:title) : "Tagging System" %></title>
+
+    <title><%= content_for?(:title) ? yield(:title) : "PairBNB" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application" %>
+
+
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
-    <nav class="nav-bar" data-topbar role="navigation">
-      <h2>Tagging in Rails</h2>
-    </nav>
-    <nav class="header text-center">
-      <h3>A SitePoint tutorial on tagging systems in Rails</h3>
-    </nav>
+
+<nav class="nav-bar" data-topbar role="navigation">
+  <body><h2 color="gray"> <%= link_to "PairBNB", root_path %></h2>
+  <div align='right' class='pr'>
+    <% if signed_in? %>
+     <a href=<% user_path(current_user)%>> Signed in as: <%= current_user.email %></a>
+      <%= button_to 'Sign out', sign_out_path, method: :delete, class: "button" %>
+    <% else %>
+      <a href="/auth/facebook">
+      <img src="https://s3-ap-southeast-1.amazonaws.com/airbnb-photos-nextacademy/facebook-sign-in-button.png" width=220px height=220px> </a>
+    <% end %>
+    </div>
     <%= yield %>
     <footer>
       All rights are reserved

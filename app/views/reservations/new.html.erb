@@ -1,0 +1,71 @@
+
+
+<h1>New reservation</h1>
+
+<% @listing = Listing.find(params["format"]) %>
+ <% @listing.image.each do |f| %>
+     <div class="inl">
+      <img src=<%= h(f.url) %> height=250px width=250px>
+      </div>
+      <% end%>
+      <div>
+<b><%= @listing.title%>
+$<%= @listing.price%></b><br/>
+Location:
+<%= @listing.location%><br/>
+Bedrooms:
+<%= @listing.bedrooms%><br/>
+Bathrooms:
+<%= @listing.bathrooms%><br/>
+Amenities:
+<%= @listing.amenities%><br/>
+Description:
+<%= @listing.description%><br/>
+Owner email:
+<%= @listing.user.email%><br/>
+</div>
+<input type="text" id="panel">
+<input type="submit" id="calendar">
+<%= form_for(Reservation.new, remote: true) do |f| %>
+	<div class="large-10 large-centered columns" id=panel> 
+	        <%= f.text_field :date, placeholder: "Dates" %>
+	</div>
+	<div class="large-10 large-centered columns">
+        <%= f.submit "Submit!", class: "button"%>
+      </div>
+<% end %>
+
+
+
+<script type="text/javascript">
+flatpickr("#panel", {
+	minDate: "today",
+	mode: "range",
+	disable: ["2018-02-24"],
+    dateFormat: "Y-m-d"
+});
+
+</script>
+
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Amount: $5.00</span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount="500"
+          data-locale="auto"></script>
+<% end %>
+
+
+
+<%= link_to 'Back', root_path %>

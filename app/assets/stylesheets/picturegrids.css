@@ -1,0 +1,111 @@
+
+.box .caption {
+	display: none;
+}
+
+.lightbox{
+	position: fixed;
+	background-color: rgba(0,0,0,0.8);
+	top: 0;
+	width:100%;
+	height: 100%;
+	text-align: center;
+	padding-top: 40px;
+	color: white;
+}
+
+.lightbox-content{
+	display:inline-block;
+}
+
+.lightbox-close{
+	float: right;
+	clear:right;
+}
+
+.lightbox a{
+	color: white;
+}
+
+.lightbox img{
+	height: 75vh;
+	width: 75vw;
+}
+
+.hidden{
+	display: none;
+}
+
+
+
+.first{
+	grid-area: one;
+}
+
+.second{
+	grid-area: two;
+}
+
+
+.third{
+	grid-area: three;
+}
+
+.fourth{
+	grid-area: four;
+}
+
+
+.fifth{
+	grid-area: five;
+}
+
+.sixth{
+	grid-area: six;
+}
+
+.seventh{
+	grid-area: seven;
+}
+
+.eighth{
+	grid-area: ten;
+}
+
+.nineth{
+	grid-area: twelve;
+}
+
+.tenth{
+	grid-area: thirteen;
+}
+
+
+.eleventh{
+	grid-area: fourteen;
+}
+
+.twelveth{
+	grid-area: seventeen;
+}
+
+
+.thirteenth{
+	grid-area:  eighteen;
+}
+
+.fourteenth{
+	grid-area: twenty;
+}
+
+.fifteenth{
+	grid-area: twenty-one;
+}
+
+.sixteenth{
+	grid-area: twenty-three;
+}
+
+.seventeenth{
+	grid-area: twenty-four;
+}

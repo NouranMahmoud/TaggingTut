@@ -1,0 +1,95 @@
+
+<h1>New reservation</h1>
+
+<% @listing = Listing.find(params["id"]) %>
+ <% @listing.image.each do |f| %>
+     <div class="inl">
+      <img src=<%= h(f.url) %> height=250px width=250px>
+      </div>
+      <% end%>
+      <div>
+<b><%= @listing.title%>
+$<%= @listing.price%></b><br/>
+Location:
+<%= @listing.location%><br/>
+Bedrooms:
+<%= @listing.bedrooms%><br/>
+Bathrooms:
+<%= @listing.bathrooms%><br/>
+Amenities:
+<%= @listing.amenities%><br/>
+Description:
+<%= @listing.description%><br/>
+Owner email:
+<%= @listing.user.email%><br/>
+</div>
+<% x = ""%>
+  <% Reservation.where(listing_id:@listing.id).each do |f|%>
+    <% if f.date %>
+      <% x += f.date.to_s.gsub(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '{from: "\1-\2-\3", to: "\4-\5-\6"},')%>
+    <% end %>
+  <% end %>
+<%= form_for(Reservation.new) do |f| %>
+  <div>
+  <%= f.hidden_field :listing_id, :value => params["id"] %>
+  </div>
+  <div>
+  <%= f.hidden_field :user_id, :value => current_user["id"] %>
+  </div>
+  <div class="large-10 large-centered columns" id="pan"> 
+    <%= f.text_field :date, id: 'panel'%>
+  </div>
+  <div class="large-10 large-centered columns">
+    <%= f.submit "Submit!", class: "button"%>
+  </div>
+<% end %>
+
+<% if !Reservation.where(listing_id:@listing.id).last.date.to_s.gsub(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '\6').to_i.nil?%>
+  <% payment = 5*((Reservation.where(listing_id:@listing.id).last.date.to_s.gsub(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '\6').to_i) - (Reservation.where(listing_id:@listing.id).last.date.to_s.gsub(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '\3').to_i))%>
+  <% if payment <= 0 %>
+    <% payment += 30 %>
+  <%end%>
+<% else %>
+  <% payment = 1 %>
+<%end%>
+
+<script type="text/javascript">
+
+
+flatpickr("#panel", {
+  minDate: "today",
+  mode: "range",
+  dateFormat: "Y-m-d",
+  disable: [ <%= raw(x)%> ]
+ 
+});
+
+var pane = document.getElementById("pan");
+console.log(pane.value)
+</script>
+
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Amount: <%=payment.to_f%>0</span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Listing payment"
+          data-amount=<%=payment * 100%>
+          data-locale="auto"></script>
+<% end %>
+
+
+ 
+
+
+
+<%= link_to 'Back', root_path %>

@@ -11,29 +11,80 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912013902) do
+ActiveRecord::Schema.define(version: 20180222055423) do
 
-  create_table "posts", force: true do |t|
-    t.string   "author"
-    t.text     "content"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "authentications", force: true do |t|
+    t.string   "uid"
+    t.string   "token"
+    t.string   "provider"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "listings", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.integer  "price"
+    t.string   "location"
+    t.integer  "bedrooms"
+    t.float    "bathrooms"
+    t.text     "amenities"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.json     "image"
+    t.string   "used_date"
+  end
+
+  create_table "reservations", force: true do |t|
+    t.integer  "listing_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "date"
+    t.integer  "cost"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "paid",       default: false
+  end
+
+  add_index "reservations", ["listing_id"], name: "index_reservations_on_listing_id", using: :btree
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
+
   create_table "taggings", force: true do |t|
-    t.integer  "post_id"
+    t.integer  "listing_id"
     t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "taggings", ["post_id"], name: "index_taggings_on_post_id"
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
+  add_index "taggings", ["listing_id"], name: "index_taggings_on_listing_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: true do |t|
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "email",                          null: false
+    t.string   "encrypted_password", limit: 128, null: false
+    t.string   "confirmation_token", limit: 128
+    t.string   "remember_token",     limit: 128, null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.text     "image"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
 end

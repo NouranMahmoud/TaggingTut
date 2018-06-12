@@ -1,0 +1,41 @@
+<div class="row text-center">
+  <% if current_user == nil%>
+    <%= p "Please log in to create a listing"%>
+  <% else %>
+      Create Listing
+    <%= form_for(Listing.new, remote: true, multipart: true, authenticity_token: true) do |f| %>
+      <div class="large-10 large-centered columns"> 
+        <%= f.text_field :title, placeholder: "Listing title" %>
+      </div>
+      <div class="large-10 large-centered columns">
+        <%= f.number_field :price, placeholder: "Nightly Price" %>
+      </div>
+      <div class="large-10 large-centered columns">
+        <%= f.text_field :location, placeholder: "Location" %>
+      </div>
+      <div class="large-10 large-centered columns">
+        <%= f.number_field :bedrooms, placeholder: "Bedrooms" %>
+      </div>
+      <div class="large-10 large-centered columns">
+        <%= f.number_field(:bathrooms, in: 0..20.0, step: 0.25, placeholder: "Bathrooms") %>
+      </div>
+      <div class="large-10 large-centered columns">
+        <%= f.text_field :amenities, placeholder: "Amenities" %>
+      </div>
+      <div class="large-10 large-centered columns">
+        <%= f.text_area :description, placeholder: "Description", rows: 5 %>
+      </div>
+      <div class="large-10 large-centered columns">
+        <%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
+      </div>
+      <div align="center">Image upload</div>
+      <div class="large-10 large-centered columns">
+        <%= f.file_field :image, multiple: true, placeholder: "Images" %>
+      </div>      
+      <div class="large-10 large-centered columns">
+        <%= f.submit "Submit!", class: "button"%>
+      </div>
+    <%end%>
+  <% end %>
+</div>
+

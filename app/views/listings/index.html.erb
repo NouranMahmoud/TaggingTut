@@ -1,0 +1,77 @@
+<div id="flash" align='center'>
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+     
+    </div>
+    
+    </nav>
+    <nav class="header text-center">
+      <h3>Find or create a listing</h3>
+    </nav>
+
+
+<div class="row mt pt">
+  <div class="large-5 columns" align='right'>
+  <%= form_tag(tag_path, method: :post) do %>
+
+  <%= submit_tag 'Search', name: nil %>
+  <%= text_field_tag :tag, nil, placeholder: "Search Tags Here" %>
+  
+<% end %>
+    <div class="top-pad glassy-bg">
+      <%= render partial: "listings/new" %>
+    </div>
+    <div class="tags-cloud glassy-bg" align="center">
+
+    
+      <h4 align="center">Tags Cloud</h4>
+      <% tag_cloud Tag.counts, %w{css1 css2 css3 css4} do |tag, css_class| %>
+        <%= link_to tag.name, tagl_path(tag.name), class: css_class %>,
+      <% end %>
+      </div>
+    
+
+  
+  </div>
+
+<h1><center>Featured Listing </center></h1>
+  <div class= "large-7 columns" id="listings" class="my-listings">
+
+    <%= render partial: @listings.reverse %>
+</div>
+
+
+<div id="my-listings">
+</div>
+
+<div id="infinite-scrolling" class="pics">
+<% if @listings != [] %>
+<% @listings = @listings.paginate(:page => 1, :per_page => 2) %>
+  <%= will_paginate @listings %>
+  <% end %>
+</div>
+</div>
+
+<script type="text/javascript">
+  (function() {
+  jQuery(function() {
+      $(window).on('scroll', function() {
+        console.log('scroll')
+    if ($('#infinite-scrolling').size() > 0) {
+      console.log('infinite-scrolling')
+        var more_listings_url;
+        more_listings_url = $('.pagination .next_page a').attr('href');
+        if (more_listings_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60) {
+          $('.pagination').html('<img src="/images/ajax-loader.gif" alt="Loading..." title="Loading..." />');
+          $.getScript(more_listings_url);
+        }
+    }
+      });
+  });
+
+}).call(this);
+</script>
+
+

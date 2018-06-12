@@ -1,0 +1,105 @@
+// Place all the styles related to the listings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.nav-bar {
+  background-color: rgba(255,255,255,0.99);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  box-shadow: 0px 3px 8px -4px rgba(0,0,0,0.15);
+  height: 88px;
+  width: 100%;
+  position: relative;
+  h2 {
+    position: absolute;
+    top: 12px;
+    left: 38px;
+    color: #CCC;
+  }
+}
+.header {
+  background-color: #96f8e3;
+  box-shadow: 0px 3px 8px -4px rgba(0,0,0,0.15);
+  padding: 30px;
+  z-index: 10;
+  h3 {
+    line-height: 1.2;
+    color: #727272;
+  }
+}
+
+.pics{
+  padding-top: 3px;
+  position: relative;
+  width: 99%;
+  height: 99%;
+}
+.button:hover{
+  transform: scale(1.05);
+}
+
+
+
+.pics:hover{
+  transform: scale(1.02);
+}
+
+.map{
+  position: relative;
+  width: 99%;
+  height: 250px;
+}
+
+.tags-cloud {
+  margin-top: 16px;
+  padding: 14px;
+}
+
+.top-pad {
+  padding: 25px;
+}
+.glassy-bg{
+  box-shadow: 0px 3px 8px -4px rgba(0,0,0,0.15);
+  background: white;
+  border-radius: 4px;
+  padding-bottom: 12px;
+}
+
+.reserve{
+  border-radius: 3px;;
+  text-align:center;
+  color: white;
+  display: inline-block;
+}
+
+.mt{
+  margin-top: 10px;
+}
+.mb{
+  margin-bottom: 10px;
+}
+
+.pt{
+  padding-top: 10px;
+}
+.pb{
+  padding-bottom: 10px;
+}
+
+.pr{
+  padding-right: 10px;
+}
+
+footer {
+  height: 50px;
+  line-height: 50px;
+  color: #aaa;
+  text-align: center;
+  width: 100%;
+  background-color: white;
+  margin-top: 27px;
+}
+
+.inl{
+
+  display: inline;
+}

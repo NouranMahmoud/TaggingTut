@@ -1,0 +1,4 @@
+var new_listing = $("<%= escape_javascript(render(partial: @listing))%>").hide();
+$('#listings').prepend(new_listing);
+$('#listing_<%= @listing.id %>').fadeIn('slow');
+$('#new_listing')[0].reset();

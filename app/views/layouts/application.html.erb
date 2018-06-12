@@ -23,7 +23,7 @@
   <body><h2 color="gray"> <%= link_to "PairBNB", root_path %></h2>
   <div align='right' class='pr'>
     <% if signed_in? %>
-      Signed in as: <%= current_user.email %>
+     <a href=<% user_path(current_user)%>> Signed in as: <%= current_user.email %></a>
       <%= button_to 'Sign out', sign_out_path, method: :delete, class: "button" %>
     <% else %>
       <a href="/auth/facebook">

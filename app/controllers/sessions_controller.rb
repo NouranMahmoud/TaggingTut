@@ -8,7 +8,11 @@ class SessionsController < Clearance::SessionsController
       user = authentication.user
       authentication.update_token(auth_hash)
       @next = root_url
+      ReservationMailer.reservation_email(current_user, @listing, @reservation).deliver
+   redirect_to reservation_path(@reservation.id), notice: 'Reservation was successfully created, please pay now'
+
       @notice = "Signed in!"
+
     # else: user logs in with OAuth for the first time
     else
       user = User.create_with_auth_and_hash(authentication, auth_hash)
